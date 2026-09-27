@@ -75,3 +75,20 @@ const flattenObject = (obj, parentKey = '', result = {}) => {
   }
   return result;
 }
+console.log(flattenObject(nestedObj));
+
+
+// Problem -  40
+
+const groupBy = (arr, key) => {
+    return arr.reduce((acc, item) => {
+    const groupKey = item[key];
+
+    if (!acc[groupKey]) {
+      acc[groupKey] = [];
+    }
+    acc[groupKey].push(item);
+
+    return acc;
+  }, {});
+}
