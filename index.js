@@ -33,3 +33,28 @@ retry(async()=>{ throw new Error('Failed')}, 3)
 
 // Problem -  38
 
+const myPromiseAll = (promises) => {
+    return new Promise((resolve, reject) => {
+        if(promises.length === 0) {
+            resolve([]);
+            return;
+        }
+        const results = [];
+        let completed = 0;
+
+        promises.forEach((p, index) => {
+            Promise.resolve(p)
+            .then((value) => {
+                results[index] = value;
+                completed++;
+
+                if(completed === promises.length) {
+                    resolve(results);
+                }
+            })
+            .catch((error =>{
+                reject(error);
+            }))
+        })
+    })
+}
